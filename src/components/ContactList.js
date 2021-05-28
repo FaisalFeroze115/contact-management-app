@@ -9,9 +9,11 @@ const ContactList = ({contacts, removeHandeler}) => {
         //console.log(id);
     }
 
-    const renderContactList = contacts.map(contacts=>{
+    const renderContactList = contacts.map(contact=>{
         return(
-            <ContactCard key={contacts.id} contacts={contacts} deleteContact={deleteContact}/>
+            
+                <ContactCard key={contact.id} contacts={contact} deleteContact={deleteContact}/>
+            
         );
     })
 

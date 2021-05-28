@@ -1,21 +1,27 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 class AddContact extends React.Component{
     state = {
         name: "",
         email: "",
     }
+    
 
     add = (e) =>{
         e.preventDefault();
         if(this.state.name === "" && this.state.email === ""){
             alert("Please Enter All Fields");
             return
-        }else{
-            this.props.addContactHandeler(this.state);
-            this.setState({name:"", email:" ",})
         }
+        this.props.addContactHandeler(this.state);
+        this.setState({name:"", email:" ",})
+        console.log('yo',this.props);
+        const { history } = this.props;
+        history.push('/');
+        //this.props.history.push("/");
+        
     }
     render(){
         return(
@@ -63,4 +69,4 @@ const style_div = {
 
 }
 
-export default AddContact
+export default withRouter(AddContact)

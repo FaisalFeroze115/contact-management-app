@@ -4,6 +4,7 @@ import AddContact from './components/AddContact'
 import ContactList from './components/ContactList'
 import {useState, useEffect} from 'react'
 import {uuid, uuidv4} from 'uuidv4'
+import contactDetail from './components/ContactDetail'
 import {
   BrowserRouter as Router,
   Switch,
@@ -44,6 +45,7 @@ function App() {
         <Switch>
             <Route path="/" exact component={()=> <ContactList contacts={contacts} removeHandeler={removeHandeler}/>} />
             <Route path="/add" component={()=> <AddContact addContactHandeler={addContactHandeler}/>}/>
+            <Route path="/contactDetail/:id" component={contactDetail}/>
         </Switch>
        </Router>
        
