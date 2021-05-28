@@ -4,6 +4,12 @@ import AddContact from './components/AddContact'
 import ContactList from './components/ContactList'
 import {useState, useEffect} from 'react'
 import {uuid, uuidv4} from 'uuidv4'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -34,8 +40,13 @@ function App() {
   return (
     <div className="ui container">
        <Header/>
-       <AddContact addContactHandeler={addContactHandeler}/>
-       <ContactList contacts={contacts} removeHandeler={removeHandeler}/>
+       <Router>
+        <Switch>
+            <Route path="/" exact component={()=> <ContactList contacts={contacts} removeHandeler={removeHandeler}/>} />
+            <Route path="/add" component={()=> <AddContact addContactHandeler={addContactHandeler}/>}/>
+        </Switch>
+       </Router>
+       
     </div>
   );
 }
