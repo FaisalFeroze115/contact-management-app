@@ -4,7 +4,8 @@ import AddContact from './components/AddContact'
 import ContactList from './components/ContactList'
 import {useState, useEffect} from 'react'
 import {uuid, uuidv4} from 'uuidv4'
-import contactDetail from './components/ContactDetail'
+import ContactDetail from './components/ContactDetail'
+import EditContact from './components/EditContact'
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,6 +29,12 @@ function App() {
     setContacts(newContactList);
   }
 
+  const editHandeler = (con) =>{
+    console.log('from edit', con);
+    const editedContacts = contacts.map(contact=> contact.id === con.id ? con : contact);
+    setContacts(editedContacts);
+  }
+
   useEffect(()=>{
     const retriveContact = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if(retriveContact) setContacts(retriveContact);
@@ -45,7 +52,8 @@ function App() {
         <Switch>
             <Route path="/" exact component={()=> <ContactList contacts={contacts} removeHandeler={removeHandeler}/>} />
             <Route path="/add" component={()=> <AddContact addContactHandeler={addContactHandeler}/>}/>
-            <Route path="/contactDetail/:id" component={contactDetail}/>
+            <Route path="/contactDetail/:id" component={ContactDetail}/>
+            <Route path="/editContact/:id" component={()=> <EditContact editHandeler={editHandeler}/>}/>
         </Switch>
        </Router>
        

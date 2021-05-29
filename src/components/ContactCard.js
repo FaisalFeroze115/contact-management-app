@@ -2,6 +2,7 @@ import React from 'react'
 import user from "../images/avatar.png"
 import {Link} from 'react-router-dom'
 
+
 const ContactCard = ({contacts,deleteContact}) => {
     const {id, name, email} = contacts;
     return (
@@ -15,11 +16,19 @@ const ContactCard = ({contacts,deleteContact}) => {
                     </div>
                 </div>
             </Link>
+            <div>
+                <i 
+                onClick={()=>deleteContact(id)}
+                style={{color:"red",marginTop:"7px",cursor:'pointer'}} className="trash alternate outline icon">
+                </i>
+                <Link to={{pathname:`/editContact/${id}`, state:{contact:contacts}}}>
+                    <i 
+                    style={{color:"blue",marginTop:"7px",cursor:'pointer'}} className="edit alternate outline icon">
+                    </i>
+                </Link>
+                
+            </div>
             
-            <i 
-             onClick={()=>deleteContact(id)}
-             style={{color:"red",marginTop:"7px"}} className="trash alternate outline icon">
-            </i>
         </div>
     )
 }
